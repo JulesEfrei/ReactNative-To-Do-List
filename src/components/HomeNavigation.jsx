@@ -1,6 +1,8 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native"
 import { useState } from "react"
 
+import ToDo from "./ToDo"
+
 export default function HomeNavigation() {
 
     const nav = [
@@ -22,10 +24,10 @@ export default function HomeNavigation() {
         
             <Text style={styles.title}>My Tasks</Text>
 
-            <ScrollView horizontal={true} style={styles.navContainer} showsHorizontalScrollIndicator={false}>
+            <ScrollView horizontal={true} contentContainerStyle={styles.navContainer} showsHorizontalScrollIndicator={false}>
 
                 {nav.map((elm, i) => (
-                    <TouchableOpacity onPress={() => switchView(i)} key={i}>
+                    <TouchableOpacity onPress={() => switchView(i)} style={index == i && styles.active} key={i}>
                         <Text style={[styles.item, index == i && styles.active]}>{elm}</Text>
                     </TouchableOpacity>
                 ))}
@@ -33,7 +35,7 @@ export default function HomeNavigation() {
             </ScrollView>
 
 
-            { index == 0 && (<Text>TO DO LIST</Text>) }
+            { index == 0 && (<ToDo />) }
             { index == 1 && (<Text>DUE SOON</Text>) }
 
         
@@ -55,19 +57,21 @@ const styles = {
     navContainer: {
         borderBottomWidth: 1,
         borderColor: '#BDBDBD',
-        display: "flex",
-        flexDirection: "row",
         marginTop: 20,
         marginBottom: 40,
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "row",
+        width: "150%",
+        paddingLeft: 20,
+        paddingRight: 20
     },
     item: {
-        width: 150,
-        paddingLeft: 10,
-        color: '#BDBDBD'
+        color: '#BDBDBD',
     },
     active: {
         color: "black",
-        borderBottomWidth: 10,
-        borderColor: "#0A2CF3"
+        borderBottomWidth: 3,
+        borderColor: "#0A2CF3",
     }
 }
