@@ -3,10 +3,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 import NavBar from "../components/NavBar"
+import HomeNavigation from "../components/HomeNavigation"
 
 export default function HomeScreen() {
 
     const navigation = useNavigation();
+
 
     async function clearStorage() {
 
@@ -24,6 +26,9 @@ export default function HomeScreen() {
         <SafeAreaView>
         
             <NavBar />
+
+            <HomeNavigation/>
+
 
         </SafeAreaView>
 

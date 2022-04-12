@@ -1,9 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+
 import Loading from "./src/views/Loading"
 import Home from "./src/views/HomeScreen"
 import GetStarting from "./src/views/GetStarting"
+
 
 
 const Stack = createNativeStackNavigator();
