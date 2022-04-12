@@ -7,6 +7,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 export default function ToDo() {
 
     const { data, setData} = useContext(dataContext)
+
+    function calcul(category) {
+        
+        return Math.floor((Object.values(data[category]).filter(elm => elm.checked == true).length / data[category].length) * 100)
+
+    }
     
     return (
         
@@ -19,8 +25,8 @@ export default function ToDo() {
                     <TouchableOpacity style={styles.topIcon}><Icon name="dots-horizontal" size={23} color="#BDBDBD" /></TouchableOpacity>
                 </View>
                 <View style={styles.progressBarContainer}>
-                    <View style={styles.progressBar}></View>
-                    <Text style={styles.progressBarLevel}>25%</Text>
+                    <View style={[styles.progressBar, {width: calcul(elm) + "%" }]}></View>
+                    <Text style={styles.progressBarLevel}>{ calcul(elm) }%</Text>
                 </View>
             </TouchableOpacity>
         ))}
@@ -71,7 +77,6 @@ const styles = {
         color: "#BDBDBD",
     },
     progressBar: {
-        width: "25%",
         height: 5,
         borderRadius: 5,
         backgroundColor: "#9C6BCD"
