@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 
-const dataContext = createContext([]);
+export const dataContext = createContext();
 
 
 /*

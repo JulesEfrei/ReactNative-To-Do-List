@@ -1,6 +1,8 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native"
 import { useState } from "react"
 
+import DataProvider from "../context/DataProvider"
+
 import ToDo from "./ToDo"
 import DueSoon from "./DueSoon"
 
@@ -21,6 +23,7 @@ export default function HomeNavigation() {
 
     return (
 
+        <DataProvider>
         <View style={styles.container}>
         
             <Text style={styles.title}>My Tasks</Text>
@@ -41,6 +44,7 @@ export default function HomeNavigation() {
 
         
         </View>
+        </DataProvider>
 
     )
 

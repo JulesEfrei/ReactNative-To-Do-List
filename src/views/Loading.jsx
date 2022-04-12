@@ -12,15 +12,10 @@ export default function Loading() {
 
         (async () => {
 
-            console.log("First" + await AsyncStorage.getItem('started'))
-
             if(await AsyncStorage.getItem('started')) {
 
                 setGetStarting(true)
                 navigation.push("Home")
-                console.log("State after condition" + getStarting)
-                
-
 
             } else {
 
