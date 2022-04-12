@@ -8,6 +8,22 @@ export default function ToDo() {
 
     const { data, setData} = useContext(dataContext)
 
+    const text = [
+        "un",
+        "eux",
+        "euxy",
+        "euxt",
+        "euxr",
+        "euxe",
+        "euxz",
+        "euxa",
+        "euxs",
+        "euxx",
+        "e",
+        "eu",
+    ]
+
+
     function calcul(category) {
         
         return Math.floor((Object.values(data[category]).filter(elm => elm.checked == true).length / data[category].length) * 100)
@@ -16,11 +32,11 @@ export default function ToDo() {
     
     return (
         
-        <ScrollView contentContainerStyle={styles.scrollView} style={{ flexGrow: 1 }}>
+        <ScrollView contentContainerStyle={styles.scrollView} style={{ flexGrow: 1 }}> 
         
         {Object.keys(data).map((elm, index) => (
             <TouchableOpacity key={`${elm}-${index}`} style={styles.buttonContainer}>
-                <View style={styles.topButton}>
+                 <View style={styles.topButton}>
                     <Text style={styles.topText}>{elm}</Text>
                     <TouchableOpacity style={styles.topIcon}><Icon name="dots-horizontal" size={23} color="#BDBDBD" /></TouchableOpacity>
                 </View>
@@ -28,8 +44,10 @@ export default function ToDo() {
                     <View style={[styles.progressBar, {width: calcul(elm) + "%" }]}></View>
                     <Text style={styles.progressBarLevel}>{ calcul(elm) }%</Text>
                 </View>
-            </TouchableOpacity>
+            </TouchableOpacity> // => This is the probleme 
         ))}
+
+        {/* {text.map(elm => (<Text style={styles.test}>{elm}</Text>))} */}
 
         </ScrollView>
 
@@ -45,6 +63,7 @@ const styles = {
     },
     buttonContainer: {
         width: "90%",
+        height: 70,
         backgroundColor: "white",
         display: "flex",
         paddingLeft: 13,
@@ -80,5 +99,8 @@ const styles = {
         height: 5,
         borderRadius: 5,
         backgroundColor: "#9C6BCD"
+    },
+    test: {
+        fontSize: 200
     }
 }

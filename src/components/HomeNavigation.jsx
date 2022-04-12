@@ -63,11 +63,12 @@ const styles = {
         borderBottomWidth: 1,
         borderColor: '#BDBDBD',
         marginTop: 20,
-        marginBottom: 40,
+        marginBottom: 30,
         display: "flex",
         justifyContent: "space-between",
         flexDirection: "row",
         width: "150%",
+        height: 27,
         paddingLeft: 20,
         paddingRight: 20
     },
