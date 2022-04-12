@@ -2,6 +2,7 @@ import { View, Text, ScrollView, TouchableOpacity } from "react-native"
 import { useState } from "react"
 
 import ToDo from "./ToDo"
+import DueSoon from "./DueSoon"
 
 export default function HomeNavigation() {
 
@@ -36,7 +37,7 @@ export default function HomeNavigation() {
 
 
             { index == 0 && (<ToDo />) }
-            { index == 1 && (<Text>DUE SOON</Text>) }
+            { index == 1 && (<DueSoon />) }
 
         
         </View>
