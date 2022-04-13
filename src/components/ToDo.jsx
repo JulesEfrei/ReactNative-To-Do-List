@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { dataContext } from "../context/dataContext"
 
-import { ScrollView, Text, TouchableOpacity, View } from "react-native"
+import { ScrollView, Text, TextComponent, TouchableOpacity, View } from "react-native"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function ToDo() {
@@ -32,7 +32,9 @@ export default function ToDo() {
     
     return (
         
-        <ScrollView contentContainerStyle={styles.scrollView} style={{ flexGrow: 1 }}> 
+        <View style={{ height: 550 }}>
+
+        <ScrollView contentContainerStyle={styles.scrollView}> 
         
         {Object.keys(data).map((elm, index) => (
             <TouchableOpacity key={`${elm}-${index}`} style={styles.buttonContainer}>
@@ -44,12 +46,12 @@ export default function ToDo() {
                     <View style={[styles.progressBar, {width: calcul(elm) + "%" }]}></View>
                     <Text style={styles.progressBarLevel}>{ calcul(elm) }%</Text>
                 </View>
-            </TouchableOpacity> // => This is the probleme 
+            </TouchableOpacity>
         ))}
 
-        {/* {text.map(elm => (<Text style={styles.test}>{elm}</Text>))} */}
-
         </ScrollView>
+
+        </View>
 
     )
 
@@ -101,6 +103,13 @@ const styles = {
         backgroundColor: "#9C6BCD"
     },
     test: {
-        fontSize: 200
+        fontSize: 100
+    },
+    testdeux: {
+        // height:  ( 200 / 100),
+        width: '100%',
+        borderWidth: 2,
+        borderColor: "red",
+        flex: 1
     }
 }
