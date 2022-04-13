@@ -1,7 +1,8 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native"
 import { useState } from "react"
+import { useNavigation } from '@react-navigation/native';
 
-import DataProvider from "../context/DataProvider"
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import ToDo from "./ToDo"
 import DueSoon from "./DueSoon"
@@ -17,13 +18,15 @@ export default function HomeNavigation() {
 
     const [index, setIndex] = useState(0)
 
+    const navigation = useNavigation();
+
     function switchView(index) {
         setIndex(index)
     }
 
     return (
 
-        <DataProvider>
+        
         <View style={styles.container}>
         
             <Text style={styles.title}>My Tasks</Text>
@@ -42,9 +45,14 @@ export default function HomeNavigation() {
             { index == 0 && (<ToDo />) }
             { index == 1 && (<DueSoon />) }
 
+            <View style={styles.addContainer}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.push("CreateTask")}>
+                    <Text style={styles.icon}><Icon name="plus" size={23} color="#FFF" /></Text>
+                </TouchableOpacity>
+            </View>
+
         
         </View>
-        </DataProvider>
 
     )
 
@@ -79,5 +87,13 @@ const styles = {
         color: "black",
         borderBottomWidth: 3,
         borderColor: "#0A2CF3",
-    }
+    },
+    addContainer: {
+        position: "absolute",
+        bottom: 25,
+        right: 20,
+        padding: 10,
+        backgroundColor: "#0A2CF3",
+        borderRadius: 5
+    },
 }
