@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/core';
+import { useState } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native'
 
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
@@ -9,6 +10,8 @@ import Icon from 'react-native-vector-icons/AntDesign';
 export default function Date() {
 
     const navigation = useNavigation()
+
+    const [input, setInput] = useState()
 
     return (
 
@@ -32,7 +35,7 @@ export default function Date() {
 
                     <Calendar style={styles.calendar}
                         // Initially visible month. Default = now
-                        current={'2022-04-16'}
+                        // current={'2022-04-16'}
                         // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
                         minDate={'2022-01-01'}
                         // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
@@ -40,6 +43,7 @@ export default function Date() {
                         // Handler which gets executed on day press. Default = undefined
                         onDayPress={day => {
                           console.log('selected day', day);
+                          setInput(day)
                         }}
                         // Handler which gets executed on day long press. Default = undefined
                         onDayLongPress={day => {
@@ -82,6 +86,15 @@ export default function Date() {
                         //}}
                         // Enable the option to swipe between months. Default = false
                         enableSwipeMonths={true}
+
+                        markedDates={{
+                            '2022-04-20': {textColor: 'green'},
+                            '2022-04-22': {startingDay: true, color: 'green'},
+                            '2022-04-23': {selected: true, endingDay: true, color: 'green'},
+                            '2022-04-04': {disabled: true, startingDay: true, color: 'green', endingDay: true}
+                          }}
+
+                          markingType={'period'}
                     />
 
                 </View>
