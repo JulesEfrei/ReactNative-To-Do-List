@@ -6,7 +6,8 @@ import DataProvider from "./src/context/DataProvider"
 import Loading from "./src/views/Loading"
 import Home from "./src/views/HomeScreen"
 import GetStarting from "./src/views/GetStarting"
-import CreateTask from "./src/views/CreateTask"
+import CreateTaskName from "./src/views/task/CreateTaskName"
+import CreateTaskDate from "./src/views/task/CreateTaskDate"
 
 
 
@@ -22,7 +23,13 @@ export default function App() {
         <Stack.Screen name="Loading" component={Loading} options={{ headerShown: false }} />
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
         <Stack.Screen name="GetStarting" component={GetStarting} options={{ headerShown: false }} />
-        <Stack.Screen name="CreateTask" component={CreateTask} options={{ headerShown: false }} />
+        <Stack.Screen name="CreateTask/Name" options={{ headerShown: false }}>
+          {(props) => <CreateTaskName {...props} type="Name" /> }
+        </Stack.Screen>
+        <Stack.Screen name="CreateTask/Description" options={{ headerShown: false }}>
+          {(props) => <CreateTaskName {...props} type="Description" /> }
+        </Stack.Screen>
+        <Stack.Screen name="CreateTask/Date" component={CreateTaskDate} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
     </DataProvider>

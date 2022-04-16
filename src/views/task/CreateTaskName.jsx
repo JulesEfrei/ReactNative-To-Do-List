@@ -4,8 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { useNavigation } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
+import Toast from 'react-native-toast-message'
 
-export default function Name() {
+export default function Name({ type }) {
 
     const [input, setInput] = useState("")
 
@@ -13,10 +14,13 @@ export default function Name() {
 
     function check() {
 
-        if(input != "") {
-            navigation.push("Date")
+        if(input != "" || type == "Description") {
+            navigation.push(`CreateTask/${type == "Name" ? "Description": "Date"}`)
         } else {
-            console.log("Impossible")
+            Toast.show({
+                type: "error",
+                text1: "Please enter a name"
+            })
         }
 
     }
@@ -28,7 +32,7 @@ export default function Name() {
 
             <View style={styles.backContainer}>
 
-                <TouchableOpacity onPress={() => navigation.push("Home")}>
+                <TouchableOpacity onPress={() => navigation.goBack()}>
                     <Text><Icon name="left" size={23} color="black" /></Text>
                 </TouchableOpacity>
 
@@ -36,13 +40,15 @@ export default function Name() {
 
             <View style={styles.main}>
 
-                <View style={styles.titleContainer}>
-                    <Text style={styles.title}>Task Name :</Text>
+                <View style={[styles.titleContainer, { width: type == "Name" ? "55%": "70%" }]} >
+                    <Text style={styles.title}>
+                        {type == "Name" ? "Task's Name :" : "Task's Description"}
+                    </Text>
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <Text style={styles.bind}>{input}</Text>
-                    <TextInput placeholder="Task's Name" onChangeText={setInput} style={styles.input} />
+                    { type == "Name" && <Text style={styles.bind}>{input}</Text>}
+                    <TextInput placeholder={type == "Name" ? "Task's Name :" : "Task's Description"} onChangeText={setInput} style={styles.input} />
                 </View>
 
             </View>
@@ -53,6 +59,7 @@ export default function Name() {
                 </TouchableOpacity>
             </View>
 
+            <Toast />
 
         </SafeAreaView>
 
@@ -79,7 +86,6 @@ const styles = {
         marginBottom: 50,
         borderBottomWidth: 7,
         borderColor: "#0A2CF3",
-        width: "45%",
     },
     title: {
         fontSize: 30,

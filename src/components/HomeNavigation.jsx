@@ -46,7 +46,7 @@ export default function HomeNavigation() {
             { index == 1 && (<DueSoon />) }
 
             <View style={styles.addContainer}>
-                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.push("CreateTask")}>
+                <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.push("CreateTask/Name")}>
                     <Text style={styles.icon}><Icon name="plus" size={23} color="#FFF" /></Text>
                 </TouchableOpacity>
             </View>
